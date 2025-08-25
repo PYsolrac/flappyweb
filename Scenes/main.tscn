@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0jhjofl8rky3"]
+
+[ext_resource type="Script" uid="uid://bhvi1uvcjwj8a" path="res://Scripts/main.gd" id="1_8gbba"]
+[ext_resource type="Texture2D" uid="uid://d38ceuoo614k4" path="res://assets/bg.png" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://djd6wvy2lr0ol" path="res://Scenes/pipe.tscn" id="2_kry3j"]
+[ext_resource type="PackedScene" uid="uid://dpyhirb7e4yjd" path="res://Scenes/bird.tscn" id="3_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://cxlv3t41mtwk4" path="res://Scenes/ground.tscn" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://cu4c6b0xru60y" path="res://Scenes/game_over.tscn" id="6_21xkr"]
+[ext_resource type="Texture2D" uid="uid://dn6bfwdafw8nj" path="res://icon.svg" id="7_6bp64"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21xkr"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_8gbba")
+pipe_scene = ExtResource("2_kry3j")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_jjgbg")
+offset = Vector2(432, 384)
+
+[node name="Bird" parent="." instance=ExtResource("3_jjvhh")]
+
+[node name="Ground" parent="." instance=ExtResource("4_jjvhh")]
+z_index = 1
+
+[node name="PipeTimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="ScoreLabel" type="Label" parent="."]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.5
+offset_right = 34.5
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "SCORE: 0"
+
+[node name="GameOver" parent="." instance=ExtResource("6_21xkr")]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+visible = false
+scale = Vector2(6.75, 7.29688)
+texture_normal = ExtResource("7_6bp64")
+shape = SubResource("RectangleShape2D_21xkr")
+action = "Click"
+
+[connection signal="hit" from="Ground" to="." method="_on_ground_hit"]
+[connection signal="timeout" from="PipeTimer" to="." method="_on_pipe_timer_timeout"]
+[connection signal="restart" from="GameOver" to="." method="_on_game_over_restart"]

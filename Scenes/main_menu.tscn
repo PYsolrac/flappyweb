@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://day13nq8ndw04"]
+
+[ext_resource type="FontFile" uid="uid://cd8cwhrfnxf7u" path="res://Fonts/Silkscreen/Silkscreen-Regular.ttf" id="1_28flt"]
+[ext_resource type="Script" uid="uid://dxf1aonomigug" path="res://Scripts/main_menu.gd" id="1_48xlc"]
+[ext_resource type="Texture2D" uid="uid://d38ceuoo614k4" path="res://assets/bg.png" id="2_1ehe0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ce3w2"]
+texture = ExtResource("2_1ehe0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ehe0"]
+bg_color = Color(0.835294, 0.470588, 0.0196078, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+shadow_color = Color(0.32549, 0.188235, 0.0235294, 1)
+shadow_size = 16
+shadow_offset = Vector2(0, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
+bg_color = Color(0.835294, 0.470588, 0.0196078, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+shadow_color = Color(0.32549, 0.188235, 0.0235294, 1)
+shadow_size = 16
+shadow_offset = Vector2(0, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48xlc"]
+bg_color = Color(0.8355, 0.468938, 0.0193291, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.99558, 0.99558, 0.99558, 1)
+shadow_color = Color(0.32549, 0.188235, 0.0235294, 1)
+shadow_size = 16
+shadow_offset = Vector2(0, 20)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_48xlc")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ce3w2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.5
+offset_top = -120.0
+offset_right = 154.5
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_28flt")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_48xlc")
+text = "START"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_28flt")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_48xlc")
+text = "OPTIONS"
+
+[node name="Exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_28flt")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxFlat_1ehe0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_48xlc")
+text = "EXIT"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -115.0
+offset_right = 115.0
+offset_bottom = 149.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0.835294, 0.470588, 0.0196078, 1)
+theme_override_constants/shadow_offset_y = 5
+theme_override_fonts/font = ExtResource("1_28flt")
+theme_override_font_sizes/font_size = 65
+text = "FLAPPY DODGE"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_exit_pressed"]

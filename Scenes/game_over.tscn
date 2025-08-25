@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://cu4c6b0xru60y"]
+
+[ext_resource type="Script" uid="uid://dmrt7a7hy8x42" path="res://Scripts/game_over.gd" id="1_8fo1c"]
+[ext_resource type="Texture2D" uid="uid://c57fej47adq38" path="res://assets/restart.png" id="2_ek8ke"]
+[ext_resource type="FontFile" uid="uid://cd8cwhrfnxf7u" path="res://Fonts/Silkscreen/Silkscreen-Regular.ttf" id="3_ek8ke"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eoghk"]
+texture = ExtResource("2_ek8ke")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_14u15"]
+texture = ExtResource("2_ek8ke")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j3ryr"]
+texture = ExtResource("2_ek8ke")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoghk"]
+bg_color = Color(0.835294, 0.470588, 0.0196078, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+shadow_color = Color(0.32549, 0.188235, 0.0235294, 1)
+shadow_size = 16
+shadow_offset = Vector2(0, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14u15"]
+bg_color = Color(0.835294, 0.470588, 0.0196078, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+shadow_color = Color(0.32549, 0.188235, 0.0235294, 1)
+shadow_size = 16
+shadow_offset = Vector2(0, 20)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j3ryr"]
+bg_color = Color(0.8355, 0.468938, 0.0193291, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.99558, 0.99558, 0.99558, 1)
+shadow_color = Color(0.32549, 0.188235, 0.0235294, 1)
+shadow_size = 16
+shadow_offset = Vector2(0, 20)
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_8fo1c")
+
+[node name="RestartButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.5
+offset_top = -46.5
+offset_right = 154.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_eoghk")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_14u15")
+theme_override_styles/normal = SubResource("StyleBoxTexture_j3ryr")
+
+[node name="Options2" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = 94.0
+offset_right = 155.0
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_ek8ke")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/hover = SubResource("StyleBoxFlat_eoghk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_14u15")
+theme_override_styles/normal = SubResource("StyleBoxFlat_j3ryr")
+text = "MENU"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
